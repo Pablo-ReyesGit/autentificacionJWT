@@ -29,4 +29,11 @@ try {
 } catch (err) {
   console.error("❌ Error al cargar modelo 'usuario':", err.message);
 }
+
+try {
+  db.matriculas = require("./matricula.model.js")(sequelize, Sequelize);
+  console.log("✅ Modelo 'matricula' cargado correctamente.");
+} catch (err) {
+  console.error("❌ Error al cargar modelo 'matricula':", err.message);
+}
 module.exports = db;

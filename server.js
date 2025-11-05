@@ -6,13 +6,25 @@ const swaggerUI = require("swagger-ui-express");
 
 const app = express();
 
-var corsOptions = {
-  origin: "http://localhost:8081",
-};
+const allowedOrigins = [
+  "http://localhost:3039",
+  "http://localhost:8081"
+];
 
-app.use(cors(corsOptions));
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
 
 // Serve Swagger documentation
 const swaggerSpec = require("./app/config/swagger.config.js");
@@ -40,6 +52,13 @@ try{
   console.log("✅ usuario.routes.js cargado correctamente");
 }catch(err){
   console.error("❌ Error al cargar usuario.routes.js:", err.message);
+}
+
+try{
+  require("./app/routes/matricula.routes.js")(app);
+  console.log("✅ matricula.routes.js cargado correctamente");
+}catch(err){
+  console.error("❌ Error al cargar matricula.routes.js:", err.message);
 }
 
 const PORT = process.env.PORT || 8081;

@@ -11,7 +11,7 @@ module.exports = app => {
     // Retrieve all published Client
     router.get("/status", soloadmin, usuario.findAllStatus);
     // Retrieve a single Client with id
-    router.get("/login", usuario.findOne);
+    router.post("/login", usuario.login);
     // Update a Client with id
     router.put("/update/:id", soloadmin, usuario.update);
     // Delete a Client with id

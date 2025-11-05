@@ -63,7 +63,7 @@ exports.findAll = (req, res) => {
 };
 
 // Find a single Tutorial with an id
-exports.findOne = async (req, res) => {
+exports.login = async (req, res) => {
     try {
         const usuario = await Usuario.findOne({ where: { correo: req.body.correo } });
         if (!usuario) {
