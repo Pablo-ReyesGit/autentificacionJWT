@@ -61,6 +61,14 @@ try{
   console.error("❌ Error al cargar matricula.routes.js:", err.message);
 }
 
+try {
+  require("./app/routes/stripe.routes.js")(app);
+  console.log("✅ stripe.routes.js cargado correctamente");
+} catch (err) {
+  console.error("❌ Error al cargar stripe.routes.js:", err.message);
+}
+
+
 const PORT = process.env.PORT || 8081;
 app.listen(PORT, () => {
   console.log(`Servidor levantado en puerto ${PORT}.`);
