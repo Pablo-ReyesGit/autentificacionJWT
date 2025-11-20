@@ -4,7 +4,7 @@ const Op = db.Sequelize.Op;
 
 // Crear un nuevo libro
 exports.create = (req, res) => {
-    if (!req.body.carnet || req.body.carnet.trim() === "") {
+    if (!req.body.carnet_estudiante || req.body.carnet_estudiante.trim() === "") {
         return res.status(400).send({ 
             message: "El carnet no debe estar vacio." 
         });
@@ -20,7 +20,7 @@ exports.create = (req, res) => {
         });
     }
     const nuevaMatricula = {
-        carnet: req.body.carnet,
+        carnet_estudiante: req.body.carnet_estudiante,
         fecha_matricula: req.body.fecha_matricula,
         matricula: req.body.matricula
     };
