@@ -36,4 +36,11 @@ try {
 } catch (err) {
   console.error("❌ Error al cargar modelo 'matricula':", err.message);
 }
+
+try {
+  db.membresias = require("./membresia.model.js")(sequelize, Sequelize);
+  console.log("✅ Modelo 'membresia' cargado correctamente.");
+} catch (err) {
+  console.error("❌ Error al cargar modelo 'membresia':", err.message);
+}
 module.exports = db;

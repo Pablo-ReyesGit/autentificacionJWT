@@ -68,6 +68,13 @@ try {
   console.error("❌ Error al cargar stripe.routes.js:", err.message);
 }
 
+try {
+  require("./app/routes/membresia.routes.js")(app);
+  console.log("✅ membresia.routes.js cargado correctamente");
+} catch (err) {
+  console.error("❌ Error al cargar membresia.routes.js:", err.message);
+}
+
 
 const PORT = process.env.PORT || 8081;
 app.listen(PORT, () => {
